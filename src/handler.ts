@@ -7,13 +7,16 @@ const HandleCommand = (sendCmd: (arg0: string) => void, sender: string, receiver
 		case "help": simpleTextMessage(sendCmd, receiver, `no one can help you, ${sender}`); return;
 		case "racko": simpleTextMessage(sendCmd, receiver, 'i hope racko explodes.'); return;
 		case "buren": simpleTextMessage(sendCmd, receiver, 'buren is the one for me <3'); return;
+		case "quit": if (sender == "racko") {
+			sendCmd("QUIT :Quit: RackoBot shutting down...")
+		} else {
+			console.log(`>> ${sender} tried to make me quit, but they're not racko!`)
+		}
+		return;
 
-		default: simpleTextMessage(sendCmd, receiver, `i don't know what ${command} is supposed to do!`); return;
+		default:
+			console.log(`>> ${command} doesn't exist.`)
 	}
-}
-
-const cmdHelp = () => {
-	
 }
 
 module.exports = HandleCommand
